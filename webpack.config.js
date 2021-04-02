@@ -16,21 +16,21 @@ module.exports = {
       {
         test: /\.js$/,
         exclude: /node_modules/,
-        use:  'babel-loader',
+        use: 'babel-loader',
       },
       {
         test: /\.css$/,
-        use:  [
+        use: [
           {
-            loader: "style-loader"
+            loader: 'style-loader',
           },
           {
-            loader: "css-loader",
+            loader: 'css-loader',
             options: {
               modules: true,
-              sourceMap: true
-            }
-          }
+              sourceMap: true,
+            },
+          },
         ],
       },
     ],
@@ -38,12 +38,12 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       template: 'index.html',
-    })
+    }),
   ],
   devServer: {
     host: 'localhost',
-    port: port,
+    port,
     historyApiFallback: true,
-    open: true
-  }
+    open: true,
+  },
 };
