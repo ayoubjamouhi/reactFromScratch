@@ -1,4 +1,8 @@
 const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+
+const port = process.env.PORT || 3000;
 module.exports = {
   entry: './index.js',
   output: {
@@ -16,8 +20,30 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use:  'css-loader',
+        use:  [
+          {
+            loader: "style-loader"
+          },
+          {
+            loader: "css-loader",
+            options: {
+              modules: true,
+              sourceMap: true
+            }
+          }
+        ],
       },
     ],
+  },
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'index.html',
+    })
+  ],
+  devServer: {
+    host: 'localhost',
+    port: port,
+    historyApiFallback: true,
+    open: true
   }
 };
